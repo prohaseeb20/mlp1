@@ -20,6 +20,7 @@ def load_from_s3(key, local_path):
     if not local_path.exists():
         os.makedirs(local_path.parent, exist_ok=True)
         st.info(f"📥 Downloading {key} from S3…")
+        print(f"S3 download: bucket={S3_BUCKET}, key={key}, region={REGION}", flush=True)
         s3.download_file(S3_BUCKET, key, str(local_path))
     return str(local_path)
 
